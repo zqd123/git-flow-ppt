@@ -1,4 +1,4 @@
-name: Deploy pages
+name: 部署github page
 on: [push]
 jobs:
   deploy:
