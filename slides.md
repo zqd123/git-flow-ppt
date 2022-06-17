@@ -1,7 +1,7 @@
 ---
-# try also 'default' to start simple
+# 还可以尝试使用“default”启动simple
 theme: seriph
-# random image from a curated Unsplash collection by Anthony
+# 随机图片 from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://source.unsplash.com/collection/94734566/1920x1080
 # apply any windi css classes to the current slide
@@ -13,32 +13,27 @@ lineNumbers: false
 # some information about the slides, markdown enabled
 info: |
   ## Slidev Starter Template
+  、
   Presentation slides for developers.
 
   Learn more at [Sli.dev](https://sli.dev)
 # persist drawings in exports and build
 drawings:
   persist: false
+# 在单页（SPA）构建中启用 pdf 下载，也可以指定一个自定义 url
+download: true
 ---
 
-# Welcome to Slidev
 
-Presentation slides for developers
+# Git flow工作流
+
+Author： 张全地  
+2022.05.31
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
+    start<carbon:arrow-right class="inline"/>
   </span>
-</div>
-
-<div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
-    class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
-  </a>
 </div>
 
 <!--
@@ -47,27 +42,22 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 ---
 
-# What is Slidev?
+# Git branch分支
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
+### 长期分支  
 
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage
+1. master （主分支）
+	* 版本库初始化以后自动建立的
+	* 代码库中有且仅有一个主分支，不可删除
+	* 不要直接修改master分支代码
+	* master分支对外发布，每一次推送应该打标签（tag）做记录，方便追溯
+2. develop （开发分支）
+	* 基于master分支创建
+	* 代码库中有且仅有一个开发分支，不可删除
+	* 不要直接修改master分支代码
 
 <br>
 <br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/guide/syntax#embedded-styles
--->
 
 <style>
 h1 {
@@ -83,301 +73,300 @@ h1 {
 
 ---
 
-# Navigation
-
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
-
-### Keyboard Shortcuts
-
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
-
-<!-- https://sli.dev/guide/animations.html#click-animations -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+## 短期分支（协助分支）
+3. feature （功能分支）
+	* 新功能或新特性开发分支
+	* 基于develop分支创建
+	* 新特性或新功能开发完成，合到develop分支
+	* 临时分支，功能完成后可删除
+4. release （预发布分支）
+	* 基于develop分支创建（feature分支合并到develop分支之后）
+	* 临时分支，产品上线后可选删除
+	* 发布到内部测试区，供测试人员测试
+5. hotfix （补丁分支）
+	* 基于master创建
+	* 对线上的版本打补丁或bug修复
+	* 修复完成后，合并到master分支和develop分支
+	* 临时分支，修复上线后可删除
 
 ---
-layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+layout: two-cols
 ---
 
-# Code
+# Gitflow工作流
+**GitPrime** CEO：  
+Vincent Driessen（文森特 · 德里森）2010年  
+博文：[成功的 Git 分支模型](https://nvie.com/posts/a-successful-git-branching-model/)
 
-Use code snippets and get the highlighting directly![^1]
+::right::
 
-```ts {all|2|1-6|9|all}
-interface User {
-  id: number
-  firstName: string
-  lastName: string
-  role: string
-}
+![在这里插入图片描述](https://img-blog.csdnimg.cn/8acae3c312b74731b71465ef734c1e4c.png)
+---
+layout: two-cols
+---
+# 创建项目初**始化仓库**  
 
-function updateUser(id: number, update: User) {
-  const user = getUser(id)
-  const newUser = { ...user, ...update }
-  saveUser(id, newUser)
-}
+* 初始化仓库，自动创建master
+* 基于mater创建develop分支
+
+::right::
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/b62b8236a6a54b33b6683254b9f70457.png)
+---
+layout: two-cols
+---
+
+# 开发**创建功能分支**	
+* 基于develope创建feature分支
+* 功能分支完成，merge到develop分支
+
+::right::
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/5e0fb1ae7c084b77a8819729eea32820.png)
+---
+layout: two-cols
+---
+
+# 预发布
+
+* 基于develop创建release分支
+* 完成release后merge到master分支，同时merge到develop分支
+
+::right::
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/92ef7f850ad84577ad539b708a817812.png)
+---
+layout: two-cols
+---
+
+# hotfix修复（线上版本出现问题）
+
+* 基于master创建hotfix分支
+* 修复完成后，merge到master分支，同时合并到develop分支
+
+::right::
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/e46a22772d094b269a7fe8ec4d2dcae3.png)
+---
+
+# 完整的gitflow工作流程图
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/452a5462ba234b91bc8521f30c3195a1.png)
+
+---
+
+# Git flow落地
+
+### 初始化项目
+* 创建并切换到Develop分支
+```bash
+	git checkout -b develop master
 ```
-
-<arrow v-click="3" x1="400" y1="420" x2="230" y2="330" color="#564" width="3" arrowSize="1" />
-
-[^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting)
-
-<style>
-.footnotes-sep {
-  @apply mt-20 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
----
-
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
+* 创建feature功能分支
+```bash
+	git checkout -b feature-x develop
 ```
+---
 
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
+### 功能开发
+* 开发完成后，将功能分支合并到develop分支：
+```bash
+	#切换到develop
+	git checkout develop
+	#合并功能分支到develop
+	git merge --no-ff feature-x
+	#切换到功能分支并删除
+	git branch -d feature-x
 ```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-
----
-class: px-20
 ---
 
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="-t-2">
-
-```yaml
----
-theme: default
----
+### 预发布 => 发布
+* 创建release预发布分支
+```bash
+	git checkout -b release-1.2 develop
 ```
-
-```yaml
----
-theme: seriph
----
+* 完成后，合并到master分支
+```bash
+	#切换到master分支
+	git checkout master
+	#合并release到master
+	git merge --no-ff release-1.2
+	# 对合并生成的新节点，做一个标签
+	git tag -a 1.2
 ```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
-
----
-preload: false
----
-
-# Animations
-
-Animations are powered by [@vueuse/motion](https://motion.vueuse.org/).
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }">
-  Slidev
-</div>
+* 再合并到develop分支
+```bash
+	#切换到develop分支
+	git checkout develop
+	#合并release到develop
+	git merge --no-ff release-1.2
 ```
-
-<div class="w-60 relative mt-6">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-square.png"
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-circle.png"
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-triangle.png"
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 40, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
-
----
-
-# LaTeX
-
-LaTeX is supported out-of-box powered by [KaTeX](https://katex.org/).
-
-<br>
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$
-\begin{array}{c}
-
-\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
-= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
-
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
-
-\nabla \cdot \vec{\mathbf{B}} & = 0
-
-\end{array}
-$$
-
-<br>
-
-[Learn more](https://sli.dev/guide/syntax#latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-3 gap-10 pt-4 -mb-6">
-
-```mermaid {scale: 0.5}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
+* 合并完成之后删除release分支
+```bash
+	git branch -d release-1.2
 ```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
-
-
----
-layout: center
-class: text-center
 ---
 
-# Learn More
+### hotfix修复
+* 创建hotfix分支
 
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
+```bash
+	git checkout -b fixbug-0.1 master
+```
+* 完成后，先合并到master分支
+```bash
+	#切换到master分支
+	git checkout master
+	#合并hotfix到master
+	git merge --no-ff fixbug-0.1
+	#打标签
+	git tag -a 0.1.1
+```
+* 再合并到develop分支
+```bash
+	#切换到develop分支
+	git checkout develop
+	#合并hotfix到develop
+	git merge --no-ff fixbug-0.1
+```
+* 删除hotfix分支
+```bash
+	git branch -d fixbug-0.1
+```
+---
+
+# 落地方式二
+安装git-flow工具
+
+---
+
+# 落地方式三
+
+使用Sourcetree可视化工具管理
+## 安装Sourcetree工具
+最新版本[Sourcetree安装教程](https://blog.csdn.net/zqd_java/article/details/123681302)
+
+---
+
+##  初始化项目
+clone示例项目：https://gitee.com/quandizhang/git-flow.git
+![在这里插入图片描述](https://img-blog.csdnimg.cn/ab55ab208acb46e0a859d9c66d189eea.png)
+
+---
+
+## 使用git工作流初始化
+![在这里插入图片描述](https://img-blog.csdnimg.cn/3acb78be814249b28a808defba3d0d67.png)
+
+---
+
+* 点击确定后，本地会自动创建并切换到develop分支。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/cead169ad64a493bbbb633ee3efd98f9.png)
+
+---
+
+
+* 我们将本地develop推送到云端
+![在这里插入图片描述](https://img-blog.csdnimg.cn/a45d1f782ee642b0ae57abd509e299c7.png)
+
+---
+
+## 接下来，我们创建feature功能分支
+![在这里插入图片描述](https://img-blog.csdnimg.cn/135ba729fe734b0ea2dfd0b71a24b84f.png)
+
+---
+
+* 基于develop分支创建
+填写分支名称
+![在这里插入图片描述](https://img-blog.csdnimg.cn/3ab5e4261b51414ca53811df2b6ef214.png)
+
+---
+
+* 创建完成
+自动切换到新创建的分支
+![在这里插入图片描述](https://img-blog.csdnimg.cn/dc6343ce62e74661be5e9c5238d7078a.png)
+
+---
+
+* 同样，我们需要把新创建的分支推送到云端仓库
+![在这里插入图片描述](https://img-blog.csdnimg.cn/28e6544e7c174be885c24cf72358629a.png)
+
+---
+
+* 完成feature功能分支
+![在这里插入图片描述](https://img-blog.csdnimg.cn/55fb0ae1e00b4665ade2336486505ce8.png)
+
+---
+
+* 合并到develop，并删除功能分支：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/8878ea68048242f19114dcfa922f31a7.png)
+
+---
+
+## 创建release预发布分支
+![在这里插入图片描述](https://img-blog.csdnimg.cn/a32fe634f9e7471f89ea17fe48b51a56.png)
+
+---
+
+* 基于develop创建
+填写预发布版本名称
+![在这里插入图片描述](https://img-blog.csdnimg.cn/c0cf20e0f98e40e19fe6acc601c14a35.png)
+
+---
+
+* 创建完成
+![在这里插入图片描述](https://img-blog.csdnimg.cn/33c934635bbf439ba3aa8fdcc789e514.png)
+
+---
+
+* 同样需要推送到远程仓库：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/0921bc2c1134423e9448e8e43d4cbca1.png)
+
+---
+
+* 完成预发布版本
+![在这里插入图片描述](https://img-blog.csdnimg.cn/c85f479d453b4d1f9bda9a256fb821ac.png)
+
+---
+
+* 标签（版本号）
+删除release分支
+合并到master分支，合并到develop分支![在这里插入图片描述](https://img-blog.csdnimg.cn/07f79f457e6041c6b2261de4ed50413a.png)
+
+---
+
+查看标签：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2d54f63768e340bcac8fc2880d18122b.png)
+
+---
+
+## 创建hotfix
+![在这里插入图片描述](https://img-blog.csdnimg.cn/3dbb58de2e394f62b11edfe117808f14.png)
+
+---
+
+* 基于master创建
+填写补丁名称
+![在这里插入图片描述](https://img-blog.csdnimg.cn/9771035da0b940e29928b9c3fa564b71.png)
+
+---
+
+* 同样，需要推送到远程仓库：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/a0e2d7284bd24496a8567c46a813ced7.png)
+
+---
+
+* 完成补丁修复
+![在这里插入图片描述](https://img-blog.csdnimg.cn/df353a28d5a04b51a68d861594efd7b7.png)
+
+---
+
+* 标签（版本名称）
+合并到master，合并到develop
+删除hotfix分支
+![在这里插入图片描述](https://img-blog.csdnimg.cn/4ef9d1e834dc4a57972c58ca1f76b444.png)
+
+---
+
+* 这边会生成一个新标签：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/8108f72828d24df6b66869bc56c66ac3.png)
+（完结）上面就是使用Sourcetree实现Git flow工作流的整个过程。

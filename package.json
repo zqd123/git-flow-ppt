@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "slidev build",
+    "build:github": "slidev build --base /git-flow/",
     "dev": "slidev --open",
     "export": "slidev export"
   },
@@ -10,5 +11,8 @@
     "@slidev/cli": "^0.33.0",
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.22.2"
   }
 }
