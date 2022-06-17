@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "slidev build",
-    "build:github": "slidev build --base /git-flow/",
+    "build:github": "slidev build --base /git-flow-ppt/",
     "dev": "slidev --open",
     "export": "slidev export"
   },

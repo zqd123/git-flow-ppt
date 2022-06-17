@@ -11,7 +11,7 @@ jobs:
       - name: Install 依赖
         run: npm install
       - name: Build 构建
-        run: npm run build
+        run: npm run build:github
       - name: 部署页面
         uses: crazy-max/ghaction-github-pages@v2
         with:
